@@ -41,10 +41,12 @@ Tujuan yang ingin dicapai dari pembuatan aplikasi sistem rekomendasi blog ini, y
 ### Solution Approach
 ---
 - Solusi yang dapat dilakukan untuk menangani permasalahan sebagaimana terdapat dalam problem statements, yaitu dengan membuat aplikasi yang dapat memberikan rekomendasi artikel yang relevan. Adapun aplikasi tersebut dibuat dengan menerapkan teknologi machine learning serta bahasa pemrograman python dengan metode pendekatan **Content-Based Filtering** dan **Collaborative Filtering**.
-- foto https://miro.medium.com/v2/resize:fit:1200/1*KBriLd3AYrLuULCqdffxCQ.png
-- ![image](https://github.com/agungbesti/German_Credit_Risk/assets/35904444/75294c2b-9f6b-457c-93ed-4aaccaf971ff)
+![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/043405f5-7717-4503-bff7-99855ce21b24)
+
 ###### Gambar 1: Content-Based Filtering dan Collaborative Filtering
-- Metode **Content-Based Filtering** bekerja dengan melihat kemiripan artikel baru dengan artikel yang sebelumnya. Content-Based Filtering memberikan rekomendasi berdasarkan kemiripan artikel yang dianalisis dari fitur yang dikandung oleh artikel sebelumnya.
+
+
+- **Content-Based Filtering** bekerja dengan melihat kemiripan artikel baru dengan artikel yang sebelumnya. Content-Based Filtering memberikan rekomendasi berdasarkan kemiripan artikel yang dianalisis dari fitur yang dikandung oleh artikel sebelumnya.
 - **Collaborative filtering** merupakan proses penyaringan atau pengevaluasian artikel menggunakan penilaian orang lain sebagai informasi yang baru kepada pengunjung situs yang lainnya.
 - Pada model Content-Based Filtering menerapkan metode **Cosine Similarity**  dan **Euclidean Distance** .
 - Pada model Collaborative Filtering menerapkan metode yang di kombinasikan dengan deep learning yaitu **RecommenderNet**.
@@ -52,42 +54,66 @@ Tujuan yang ingin dicapai dari pembuatan aplikasi sistem rekomendasi blog ini, y
 # Data Understanding
 ---
 Data yang digunakan adalah dataset yang bersumber dari situs Kaggle yang berisi informasi blog medium dengan topik teknologi. Dataset tersebut dapat didownload pada link berikut ini:  [Blog Recommendation Data](https://www.kaggle.com/datasets/yakshshah/blog-recommendation-data). 
-foto medium
-![image](https://github.com/agungbesti/German_Credit_Risk/assets/35904444/75294c2b-9f6b-457c-93ed-4aaccaf971ff)
-###### Gambar 1: Sumber Dataset
+![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/25d0f8fc-483f-4ed3-9515-923e95600bf4)
 
-Dataset tersebut memiliki 3 file yaitu:
+###### Gambar 2: Dataset
+Data ini merupakan data yang dikumpulkan dari [Medium.com](https://www.medium.com) sebuah situs yang berisi berbagai informasi mengenai teknologi. Dataset ini memiliki 3 file yaitu:
 - Author Data.csv yang berisi informasi penulis blog yang berjumlah 6868 baris
 - Medium Blog Data.csv berisi data blog yang ditulis sebanyak 10467  baris.
 - Blog Ratings.csv berisi 3 kolom yaitu blog_id, user_id dan ratings yang berjumlah 200140.
 
+## Variabel-variabel yang terdapat pada dataset blog recommendation adalah sebagai berikut:
+--- 
+1. Author Data.csv
+   - author_id : id unik penulis blog
+   - author_name : nama penulis blog
+
+2. Medium Blog Data.csv 
+   - blog_id : id unik nama blog
+   - author_id : id unik penulis blog
+   - blog_title : judul blog
+   - blog_content : ringkasan isi blog
+   - blog_link : link blog
+   - blog_img : gambar blog
+   - topic : topik blog yang ditulis.
+   - scrape_time: Waktu pengambilan data
+
+3. Blog Ratings.csv
+   - blog_id : id unik nama blog
+   - userId : id pengguna
+   - ratings : rating yang diberikan oleh pengguna
 
 ## Sample Data
 ---
-Ada pun sample data yang bisa dilihat seperti dibawah ini.
+## Author Data.csv
+Tabel 1 : Sample Data Author Data
+|#| author_id | author_name  |
+|-|-------------------------------|--------|
+|1|1 | yaksh|
+|2|2 | XIT|
+|3|3 | Daniel Meyer|
+|4|4 | Seedify Fund|
+|5|5 | Ifedolapo Shiloh Olotu|
 
-|#| Age | Sex  | Job | Housing | Saving_accounts | Checking_account | Credit_amount | Duration | Purpose | Risk |
-|-|-------------------------------|--------|-----------------------|------------------------|----------------------|-------------|--------------|--------------|-----------|----------|
-|1|67 | male| 2 | own | NaN| little | 1169| 6 | radio/TV | good|
-|2|22 | female| 2 | own | little| moderate | 5951| 48 | radio/TV | bad|
-|3|49 | male| 1 | own | little| NaN | 2096| 12 | education | good|
-|4|45 | male| 2 | free | little| little | 7882| 42 | furniture/equipment | good|
-|5|53 | male| 2 | free | little| little | 4870| 24 | car | bad|
+## Medium Blog Data.csv 
+Tabel 2 : Sample Data Medium Blog Data
+|#| blog_id | author_id  | blog_title | blog_content | blog_link | blog_img | topic | scrape_time |
+|-|-------------------------------|--------|-----------------------|------------------------|----------------------|-------------|--------------|--------------|
+|1|1 | 4| Let’s Dominate The Launchpad Space Again	 | Hello, fam! If you’ve been with us since 2021,... | https://medium.com/@seedifyfund/lets-dominate-...	| https://miro.medium.com/fit/c/140/140/1*nByLJr...	 | ai	|2023-02-27 07:37:48|
+|2|3 | 4| Let’s Dominate The Launchpad Space Again	 | Hello, fam! If you’ve been with us since 2021,... | https://medium.com/@seedifyfund/lets-dominate-...	| https://miro.medium.com/fit/c/140/140/1*nByLJr...	 | ai	|2023-02-27 07:41:47|
+|3|4 | 7| Using ChatGPT for User Research| Applying AI to 4 common user research activiti... | https://medium.com/ux-planet/using-chatgpt-for...| https://miro.medium.com/fit/c/140/140/1*TZSGnN...| ai	|2023-02-27 07:41:47|
+|4|5 | 8| The Automated Stable-Diffusion Checkpoint Merg...| Checkpoint merging is powerful. The power of c... | https://medium.com/@media_97267/the-automated-...| https://miro.medium.com/fit/c/140/140/1*x3N_Hj...| ai	|2023-02-27 07:41:47|
+|5|6 |9| The Art of Lazy Creativity: My Experience Co-W...	| I was feeling particularly lazy one day and co... | https://medium.com/@digitalshedmedia/the-art-o...| https://miro.medium.com/fit/c/140/140/0*m2DdeT...| ai	|2023-02-27 07:41:47|
 
-###### Tabel 1 : Sample Data German Credit Risk
-Untuk sample data bisa dilihat seperti pada Tabel 1.
-## Variabel-variabel yang terdapat pada dataset German Credit Risk adalah sebagai berikut:
----
-- Age = Umur pengaju
-- Sex = Jenis kelamin pengaju
-- Job = Jenis pekerjaan pengaju
-- Housing = Status kepemilikan rumah pengaju
-- Saving accounts = Rekening Tabungan pengaju
-- Checking account = Rekening Giro pengaju
-- Credit amount = Jumlah Pinjaman pengaju
-- Duration = Waktu Pinjaman dibayarkan
-- Purpose = Alasan peminjaman kredit
-- Risk = Tingkat risiko pengajuan
+## Blog Ratings.csv
+Tabel 3 : Sample Data Blog Ratings
+|#| blog_id | userId  |ratings |
+|-|-------------------------------|--------|--------|
+|1|9025 | 11| 3.5|
+|2|9320 | 11|5.0|
+|3|9246 | 11| 3.5|
+|4|9431 | 11|5.0|
+|5|875 | 11|2.0|
 
 ## Langkah-Langkah dalam melakukan Data Understanding
 ---
