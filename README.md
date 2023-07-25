@@ -41,10 +41,11 @@ Tujuan yang ingin dicapai dari pembuatan aplikasi sistem rekomendasi blog ini, y
 ### Solution Approach
 ---
 - Solusi yang dapat dilakukan untuk menangani permasalahan sebagaimana terdapat dalam problem statements, yaitu dengan membuat aplikasi yang dapat memberikan rekomendasi artikel yang relevan. Adapun aplikasi tersebut dibuat dengan menerapkan teknologi machine learning serta bahasa pemrograman python dengan metode pendekatan **Content-Based Filtering** dan **Collaborative Filtering**.
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/043405f5-7717-4503-bff7-99855ce21b24)
 
-###### Gambar 1: Content-Based Filtering dan Collaborative Filtering
-
+ <p align="center">
+ <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/043405f5-7717-4503-bff7-99855ce21b24" alt="Content-Based Filtering dan Collaborative Filtering">
+ Gambar 1: Content-Based Filtering dan Collaborative Filtering
+ </p>
 
 - **Content-Based Filtering** bekerja dengan melihat kemiripan artikel baru dengan artikel yang sebelumnya. Content-Based Filtering memberikan rekomendasi berdasarkan kemiripan artikel yang dianalisis dari fitur yang dikandung oleh artikel sebelumnya.
 - **Collaborative filtering** merupakan proses penyaringan atau pengevaluasian artikel menggunakan penilaian orang lain sebagai informasi yang baru kepada pengunjung situs yang lainnya.
@@ -54,9 +55,12 @@ Tujuan yang ingin dicapai dari pembuatan aplikasi sistem rekomendasi blog ini, y
 # Data Understanding
 ---
 Data yang digunakan adalah dataset yang bersumber dari situs Kaggle yang berisi informasi blog medium dengan topik teknologi. Dataset tersebut dapat didownload pada link berikut ini:  [Blog Recommendation Data](https://www.kaggle.com/datasets/yakshshah/blog-recommendation-data). 
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/25d0f8fc-483f-4ed3-9515-923e95600bf4)
 
-###### Gambar 2: Dataset Blog
+ <p align="center">
+ <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/25d0f8fc-483f-4ed3-9515-923e95600bf4" alt="Dataset Blog">
+ Gambar 2: Dataset Blog
+ </p>
+
 Data ini merupakan data yang dikumpulkan dari [Medium.com](https://www.medium.com) sebuah situs yang berisi berbagai informasi mengenai teknologi. Dataset ini memiliki 3 file yaitu:
 - Author Data.csv yang berisi informasi penulis blog yang berjumlah 6868 baris
 - Medium Blog Data.csv berisi data blog yang ditulis sebanyak 10467  baris.
@@ -155,9 +159,10 @@ Tabel 6 : Melihat kolom dan tipe data pada dataset Blog
 |   2   |ratings|200140| float64  |
 Pada Tabel 6 dapat dilihat bahwa data memiliki 3 kolom numerik atau angka.
 
-
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/d57e03ea-89ec-401b-ae1e-75930092c2bf)
-###### Gambar 3: Univariate Analysis pada variabel Topic
+ <p align="center">
+ <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/d57e03ea-89ec-401b-ae1e-75930092c2bf" alt="Univariate Analysis pada variabel Topic">
+ Gambar 3: Univariate Analysis pada variabel Topic
+ </p>
 Pada Gambar 3 dapat dilihat bahwa penulisan artikel dengan topik **AI (artificial inteligence) memiliki distribusi data yang lebih banyak** dibandingkan dengan topik yang lainnya. Hal ini disebabkan karena topik ai merupakan salah satu topic yang paling banyak diminati untuk saat ini.
 
 Tabel 7 : Jumlah total penulisan artikel berdasarkan topik
@@ -189,8 +194,11 @@ Tabel 7 : Jumlah total penulisan artikel berdasarkan topik
 
 Pada Tabel 7 diurutkan jumlah artikel yang paling banyak ditulis sampai yang terendah berdasarkan topik. Terlihat yang paling banyak ditulis adalah dengan topik **AI** dan yang terendah dengan penulisan artikel bertopik **Software-Development**.
 
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/bf909ecc-5f99-4d16-a050-e100dd2a0ec1)
-###### Gambar 4: Univariate Analysis pada variabel Ratings
+ <p align="center">
+ <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/bf909ecc-5f99-4d16-a050-e100dd2a0ec1" alt="Univariate Analysis pada variabel Ratings">
+ Gambar 4: Univariate Analysis pada variabel Ratings
+ </p>
+
 Pada Gambar 4 dapat dilihat bahwa artikel yang ditulis **memiliki distribusi yang paling banyak pada skor 5** dibandingkan dengan yang lainnya. Hal ini menegaskan bahwa sebagian besar penulisan blog sudah sesuai dengan keinginan para pembaca blog.
 
 # Data Preparation
@@ -311,8 +319,10 @@ TF-IDF, kependekan dari Term Frequency-Inverse Document Frequency, adalah teknik
 
 Perhitungan TF-IDF dilakukan dengan mengalikan nilai TF dan IDF secara bersamaan. Skor yang dihasilkan merepresentasikan pentingnya suatu istilah dalam dokumen dalam konteks keseluruhan kumpulan dokumen. Skor yang lebih tinggi menunjukkan bahwa suatu istilah lebih relevan atau berbeda dengan dokumen tertentu. 
 Rumus perhitungan TF-IDF untuk term (t) dalam dokumen (d) dalam kumpulan dokumen adalah sebagai berikut:
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/aff977e6-a9d8-4104-9686-9454910d17a6)
-###### Gambar 5: Perhitungan TF-IDF
+ <p align="center">
+ <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/aff977e6-a9d8-4104-9686-9454910d17a6" alt="Rumus perhitungan TF-IDF">
+ Gambar 5: Perhitungan TF-IDF
+ </p>
 
 Pada bagian ini, TF-IDF akan diterapkan untuk kolom topic. Langkah yang dilakukan untuk menerapkan Pada tahapan ini, tokenizer yang akan digunakan adalah dengan split pada data kolom tersebut. Hal ini digunakan agar data topic akan diproses dalam keadaan utuh, seperti pada suatu artikel dengan topic "Ai, development, cybersecurity", maka setelah dilakukan vectonizer menjadi ['ai', 'development', 'cybersecurity']. Setelah itu lakukan perhitungan IDF pada data topic. Kemudian jika di-mapping, maka hasilnya akan sebagai berikut.
 ```
@@ -338,14 +348,15 @@ Tabel 12: Sampel hasil TF-IDF
 Cosine Similarity adalah ukuran yang digunakan untuk menentukan kesamaan antara dua vektor dalam ruang multidimensi. Ini menghitung cosinus sudut antara vektor, yang menunjukkan seberapa dekat hubungan vektor dalam hal orientasi dan arahnya. Dalam cosine similarity, kemiripan antara dua vektor diukur berdasarkan sudut antara vektor-vektor tersebut. Nilai cosine similarity berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kedua vektor memiliki arah yang sama atau sangat mirip, nilai 0 menunjukkan tidak ada kemiripan, dan nilai -1 menunjukkan arah yang berlawanan atau sangat berbeda.
 
 Berikut adalah rumus untuk menghitung Cosinus Similarity:
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/9510067a-5fc3-4e86-a6f7-7e1a65c9330a)
-###### Gambar 6: Rumus Cosine Similarity
+ <p align="center">
+ <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/9510067a-5fc3-4e86-a6f7-7e1a65c9330a" alt="Rumus Cosine Similarity">
+ Gambar 6: Rumus Cosine Similarity
+ </p>
 Di mana:
 - A dan B adalah dua vektor yang akan dibandingkan.
 - A . B adalah hasil perkalian dot (inner product) antara vektor A dan B.
 - ||A|| dan ||B|| adalah panjang (magnitude) dari vektor A dan B.
 
-![image](https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/ddf22025-9e03-420f-ab67-54b072926a39)
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/ddf22025-9e03-420f-ab67-54b072926a39" alt="Cosine Similarity Concept">
  Gambar 9. Grafik jarak antar 2 vektor di <i>Cosine Similarity</i> 
