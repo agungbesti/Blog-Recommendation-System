@@ -805,3 +805,5 @@ Berdasarkan proyek ini dapat disimpulkan sebagai berikut
 [2] Reynaldi, & Istiono, W. (2023). Content-based Filtering and Web Scraping in Website for Recommended Anime. Asian Journal of Research in Computer Science, 15(2), 32–42. https://doi.org/10.9734/ajrcos/2023/v15i2318
 
 [3]	Y. Afoudi, M. Lazaar, and M. Al Achhab, “Hybrid recommendation system combined content-based filtering and collaborative prediction using artificial neural network,” Simul Model Pract Theory, vol. 113, Dec. 2021, doi: https://10.1016/j.simpat.2021.102375.
+
+
