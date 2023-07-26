@@ -26,31 +26,31 @@ Oleh sebab itu, diperlukan sistem yang mampu memberikan rekomendasi artikel yang
 ---
 Berdasarkan penjelasan yang telah disampaikan sebelumnya, maka problem statements (rumusan masalah) yaitu sebagai berikut:
 - Bagaimana cara memberikan rekomendasi artikel yang relevan kepada pengunjung situs berdasarkan preferensi dan rating yang diberikan?
-- Bagaimana metode Content-Based Filtering dapat memberikan rekomendasi artikel terhadap pengunjung situs?
-- Bagaimana metode Collaborative Filtering dapat memberikan rekomendasi artikel terhadap pengunjung situs?
- - Apa metode terbaik yang menghasilkan artikel relevan antara Cosine Similarity dan Euclidean Distance pada pendekatan Content-Based Filtering?
+- Bagaimana metode _Content-Based Filtering_ dapat memberikan rekomendasi artikel terhadap pengunjung situs?
+- Bagaimana metode _Collaborative Filtering_ dapat memberikan rekomendasi artikel terhadap pengunjung situs?
+ - Apa metode terbaik yang menghasilkan artikel relevan antara _Cosine Similarity_ dan _Euclidean Distance_ pada pendekatan _Content-Based Filtering_?
 
 ## Goals
 ---
 Tujuan yang ingin dicapai dari pembuatan aplikasi sistem rekomendasi blog ini, yaitu sebagai berikut:
 - Menghasilkan rekomendasi artikel yang relevan kepada pengunjung situs berdasarkan preferensi dan rating dengan membuat sistem rekomendasi blog.
-- Menghasilkan sejumlah rekomendasi artikel yang dipersonalisasi untuk pengunjung situs dengan teknik Content-Based Filtering.
-- Menghasilkan sejumlah rekomendasi artikel dengan preferensi pengunjung situs dengan teknik Collaborative Filtering.
-- Membandingkan model hasil rekomendasi artikel dari metode Cosine Similarity dan Euclidean Distance serta menghitung Precision dari setiap artikel yang dihasilkan.
+- Menghasilkan sejumlah rekomendasi artikel yang dipersonalisasi untuk pengunjung situs dengan teknik _Content-Based Filtering_.
+- Menghasilkan sejumlah rekomendasi artikel dengan preferensi pengunjung situs dengan teknik _Collaborative Filtering_.
+- Membandingkan model hasil rekomendasi artikel dari metode _Cosine Similarity_ dan _Euclidean Distance_ serta menghitung Precision dari setiap artikel yang dihasilkan.
 
 ### Solution Approach
 ---
-- Solusi yang dapat dilakukan untuk menangani permasalahan sebagaimana terdapat dalam problem statements, yaitu dengan membuat aplikasi yang dapat memberikan rekomendasi artikel yang relevan. Adapun aplikasi tersebut dibuat dengan menerapkan teknologi machine learning serta bahasa pemrograman python dengan metode pendekatan **Content-Based Filtering** dan **Collaborative Filtering**.
+- Solusi yang dapat dilakukan untuk menangani permasalahan sebagaimana terdapat dalam problem statements, yaitu dengan membuat aplikasi yang dapat memberikan rekomendasi artikel yang relevan. Adapun aplikasi tersebut dibuat dengan menerapkan teknologi machine learning serta bahasa pemrograman python dengan metode pendekatan **_Content-Based Filtering_** dan **_Collaborative Filtering_**.
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/043405f5-7717-4503-bff7-99855ce21b24" alt="Content-Based Filtering dan Collaborative Filtering">
- Gambar 1: Content-Based Filtering dan Collaborative Filtering
+ Gambar 1: _Content-Based Filtering_ dan _Collaborative Filtering_
  </p>
 
-- **Content-Based Filtering** bekerja dengan melihat kemiripan artikel baru dengan artikel yang sebelumnya. Content-Based Filtering memberikan rekomendasi berdasarkan kemiripan artikel yang dianalisis dari fitur yang dikandung oleh artikel sebelumnya.
-- **Collaborative filtering** merupakan proses penyaringan atau pengevaluasian artikel menggunakan penilaian orang lain sebagai informasi yang baru kepada pengunjung situs yang lainnya.
-- Pada model Content-Based Filtering menerapkan metode **Cosine Similarity**  dan **Euclidean Distance** .
-- Pada model Collaborative Filtering menerapkan metode yang di kombinasikan dengan deep learning yaitu **RecommenderNet**.
+- **_Content-Based Filtering_** bekerja dengan melihat kemiripan artikel baru dengan artikel yang sebelumnya. _Content-Based Filtering_ memberikan rekomendasi berdasarkan kemiripan artikel yang dianalisis dari fitur yang dikandung oleh artikel sebelumnya.
+- **_Collaborative filtering_** merupakan proses penyaringan atau pengevaluasian artikel menggunakan penilaian orang lain sebagai informasi yang baru kepada pengunjung situs yang lainnya.
+- Pada model _Content-Based Filtering_ menerapkan metode **_Cosine Similarity_**  dan **_Euclidean Distance_** .
+- Pada model _Collaborative Filtering_ menerapkan metode yang di kombinasikan dengan deep learning yaitu **_RecommenderNet_**.
 
 # Data Understanding
 ---
@@ -99,6 +99,8 @@ Tabel 1 : Sample Data Author Data
 |4|4 | Seedify Fund|
 |5|5 | Ifedolapo Shiloh Olotu|
 
+Pada Sample Author terlihat hanya ada 2 data yaitu id unik author dan nama dari author blog tersebut.
+
 ## Medium Blog Data.csv 
 Tabel 2 : Sample Data Medium Blog Data
 |#| blog_id | author_id  | blog_title | blog_content | blog_link | blog_img | topic | scrape_time |
@@ -109,6 +111,8 @@ Tabel 2 : Sample Data Medium Blog Data
 |4|5 | 8| The Automated Stable-Diffusion Checkpoint Merg...| Checkpoint merging is powerful. The power of c... | https://medium.com/@media_97267/the-automated-...| https://miro.medium.com/fit/c/140/140/1*x3N_Hj...| ai	|2023-02-27 07:41:47|
 |5|6 |9| The Art of Lazy Creativity: My Experience Co-W...	| I was feeling particularly lazy one day and co... | https://medium.com/@digitalshedmedia/the-art-o...| https://miro.medium.com/fit/c/140/140/0*m2DdeT...| ai	|2023-02-27 07:41:47|
 
+Pada sample medium blog memberikan informasi terkait judul blog yang ditulis serta link dari blog tersebut dan kapan blog tersebut diambil.
+
 ## Blog Ratings.csv
 Tabel 3 : Sample Data Blog Ratings
 |#| blog_id | userId  |ratings |
@@ -118,6 +122,8 @@ Tabel 3 : Sample Data Blog Ratings
 |3|9246 | 11| 3.5|
 |4|9431 | 11|5.0|
 |5|875 | 11|2.0|
+
+Pada sample data blog rating menampilkan informasi dari user yang memberikan penilaian terhadap blog yang telah dibaca.
 
 ## Langkah-Langkah dalam melakukan Data Understanding
 ---
@@ -222,7 +228,7 @@ Langkah pertama yang dilakukan adalah melakukan pembersihan pada data blog denga
 Langkah kedua yang dilakukan adalah melakukan penghapusan data blog yang terduplikasi pada bagian kolom blog_tile dan juga blog_content
 
 ##### 3. Melakukan Preprocessing Text Data
-Langkah ketiga yang dilakukan adalah Melakukan praproses pada text data untuk menghapus stopwords dari konten blog dan juga menerapkan lemmatization untuk mengembalikan semua kata ke bentuk kata dasar.
+Langkah ketiga yang dilakukan adalah Melakukan praproses pada text data untuk menghapus _stopwords_ dari konten blog dan juga menerapkan _lemmatization_ untuk mengembalikan semua kata ke bentuk kata dasar.
 
 Tabel 8 : Sample Data setelah Preprocessing Text Data
 |#| blog_id | blog_title  | blog_content | topic | clean_blog_content |
@@ -234,10 +240,10 @@ Tabel 8 : Sample Data setelah Preprocessing Text Data
 |5|7 | LLaMA: Everything you want to know about Meta’...| Facebook’s Parent Company Just Released a Game...	 | ai	|facebooks parent company released gamechanging... |
 
 ##### 4. Melakukan Data Preprocessing untuk Content-Based Filtering
-Setelah melakukan peghapusan kolom yang tidak diperlukan, penghapusan blog yang duplikat dan melakukan Preprocessing Text data langkah selanjutnya adalah melakukan Preprocessing untuk data yang akan digunakan pada pelatihan model. Dikarenakan ada 2 pendekatan yang dilakukan, maka tiap proses akan dipisah berdasarkan pendekatannya, Untuk model dengan pendekatan Content-Based Filtering data yang akan digunakan adalah data dari variabel blog.
+Setelah melakukan peghapusan kolom yang tidak diperlukan, penghapusan blog yang duplikat dan melakukan _Preprocessing Text Data_ langkah selanjutnya adalah melakukan _Preprocessing_ untuk data yang akan digunakan pada pelatihan model. Dikarenakan ada 2 pendekatan yang dilakukan, maka tiap proses akan dipisah berdasarkan pendekatannya, Untuk model dengan pendekatan _Content-Based Filtering_ data yang akan digunakan adalah data dari variabel blog.
 
 ##### 5. Melakukan Data Preprocessing untuk Collaborative Based Filtering
-Untuk preprocessing data dengan pendekatan Collaborative Based Filtering, data yang akan digunakan adalah data dari variabel blog yang akan digabungkan dengan data dari variabel ratings. Pada pendekatan ini, data yang akan dijadikan patokan adalah **userId**, **id_blog** dan **ratings** yang diberikan oleh pengguna tersebut.
+Untuk preprocessing data dengan pendekatan _Collaborative Based Filtering_, data yang akan digunakan adalah data dari variabel blog yang akan digabungkan dengan data dari variabel ratings. Pada pendekatan ini, data yang akan dijadikan patokan adalah **userId**, **id_blog** dan **ratings** yang diberikan oleh pengguna tersebut.
 
 Dikarenakan itu, ada 4 tahapan yang akan dilakukan, yaitu:
 1. Encode fitur userId dan blog_id
@@ -305,9 +311,9 @@ $$Rating_{norm} = \dfrac{rating - min(rating)}{max(rating) - min(rating)}$$
 Pada proyek ini akan menggunakan 2 pendekatan tipe model, yaitu **Content-Based Filtering** dan **Collaborative Based Filtering**.
 
 ## A. Content-Based Filtering
-Content-Based Filtering adalah metode dalam sistem rekomendasi yang menggunakan informasi konten atau fitur dari item (artikel, produk, film, lagu, dll.) dan preferensi pengguna untuk memberikan rekomendasi yang sesuai. Pendekatan ini mencocokkan preferensi pengguna dengan fitur-fitur item yang relevan.
+_Content-Based Filtering_ adalah metode dalam sistem rekomendasi yang menggunakan informasi konten atau fitur dari item (artikel, produk, film, lagu, dll.) dan preferensi pengguna untuk memberikan rekomendasi yang sesuai. Pendekatan ini mencocokkan preferensi pengguna dengan fitur-fitur item yang relevan.
 
-Kelebihan dari Content Based Filtering adalah
+Kelebihan dari _Content Based Filtering_ adalah
 1. Tidak memerlukan data pengguna lain atau kolaboratif.
 2. Dapat memberikan rekomendasi personal yang disesuaikan dengan preferensi pengguna.
 3. Dapat memanfaatkan fitur-fitur detail dari item untuk memberikan rekomendasi yang lebih spesifik.
@@ -319,24 +325,43 @@ Namun terdapat beberapa kelemahannya, yaitu
 3. Tidak dapat menangkap preferensi pengguna yang kompleks atau berubah seiring waktu.
 4. Tidak mampu merekomendasikan item baru yang tidak ada dalam data pelatihan.
 
-Pada metode ini, model yang dikembangkan akan menggunakan fitur topik dimana hasilnya akan merekomendasikan artikel berdasarkan kemiripan topic. Akan ada 2 teknik perhitungan similarity yang akan digunakan, yaitu **Cosine Similarity** dan **Euclidean Distance**.
+Pada metode ini, model yang dikembangkan akan menggunakan fitur topik dimana hasilnya akan merekomendasikan artikel berdasarkan kemiripan topic. Akan ada 2 teknik perhitungan similarity yang akan digunakan, yaitu **_Cosine Similarity_** dan **_Euclidean Distance_**.
 
 ### B. Menggunakan TF-IDF
-TF-IDF, kependekan dari Term Frequency-Inverse Document Frequency, adalah teknik yang banyak digunakan dalam pemrosesan bahasa alami dan pengambilan informasi untuk mengukur pentingnya suatu istilah dalam dokumen dalam kumpulan dokumen. TF-IDF menggabungkan dua faktor: **Term Frequency (TF) dan Inverse Document Frequency (IDF)**.
+TF-IDF, kependekan dari _Term Frequency-Inverse Document Frequency_, adalah teknik yang banyak digunakan dalam pemrosesan bahasa alami dan pengambilan informasi untuk mengukur pentingnya suatu istilah dalam dokumen dalam kumpulan dokumen. TF-IDF menggabungkan dua faktor: **Term Frequency (TF) dan Inverse Document Frequency (IDF)**.
 - **Term Frequency (TF)**: TF mengukur frekuensi istilah dalam dokumen. Ini menghitung berapa kali suatu istilah muncul dalam dokumen dan mewakilinya sebagai hitungan mentah atau nilai yang dinormalisasi. Alasan di balik TF adalah bahwa istilah yang lebih sering muncul dalam dokumen cenderung lebih penting atau relevan dengan dokumen tersebut.
 - **Inverse Document Frequency (IDF)**: IDF mengukur signifikansi suatu istilah di seluruh kumpulan dokumen. Ini menghitung logaritma fraksi terbalik dari jumlah dokumen yang mengandung istilah tersebut. Ide di balik IDF adalah bahwa istilah yang muncul di sejumlah kecil dokumen lebih informatif dan berharga daripada istilah yang muncul di sejumlah besar dokumen.
 
 Perhitungan TF-IDF dilakukan dengan mengalikan nilai TF dan IDF secara bersamaan. Skor yang dihasilkan merepresentasikan pentingnya suatu istilah dalam dokumen dalam konteks keseluruhan kumpulan dokumen. Skor yang lebih tinggi menunjukkan bahwa suatu istilah lebih relevan atau berbeda dengan dokumen tertentu. 
 Rumus perhitungan TF-IDF untuk term (t) dalam dokumen (d) dalam kumpulan dokumen adalah sebagai berikut:
  
- 
- 
-<p align="center">
-<img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/aff977e6-a9d8-4104-9686-9454910d17a6" alt="Rumus perhitungan TF-IDF">
 
-Gambar 5: Perhitungan TF-IDF
-</p>
+Rumus umum untuk menghitung nilai TF-IDF adalah sebagai berikut:
 
+$$TF-IDF(d, t) = TF(d, t) * IDF(t)$$
+
+Di mana:
+
+-   TF(d, t) adalah frekuensi kemunculan kata (term) t dalam dokumen d. Frekuensi ini dapat dihitung dengan berbagai metode, misalnya menggunakan skema biner (jika kata ada dalam dokumen, nilai TF = 1) atau menggunakan frekuensi relatif (jumlah kemunculan kata dibagi dengan total kata dalam dokumen).
+-   IDF(t) adalah inverse document frequency (kebalikan frekuensi dokumen) dari kata t. IDF mengukur sejauh mana kata t umum atau langka di seluruh dokumen dalam korpus. IDF dihitung sebagai logaritma dari jumlah total dokumen dalam korpus dibagi dengan jumlah dokumen yang mengandung kata t.
+
+Untuk rumus TF adalah sebagai berikut
+
+$$TF(d, t) = \dfrac{f_d(t)}{maxf_d(w)}$$
+
+Dimana:
+
+- $f_d(t)$ merupakan frekuensi kemunculan kata $t$ dalam dokumen $d$
+- $maxf_d(w)$ merupakan jumlah kata dalam dokumen $d$
+
+Sedangkan urum IDF adalah
+
+$$IDF(t) = log(\dfrac{N}{1+ df})$$
+
+Dimana:
+
+- $N$ Panjang dokumen
+- $df$ Jumlah dokumen yang mengandung kata $t$
 
 Pada bagian ini, TF-IDF akan diterapkan untuk kolom topic. Langkah yang dilakukan untuk menerapkan Pada tahapan ini, tokenizer yang akan digunakan adalah dengan split pada data kolom tersebut. Hal ini digunakan agar data topic akan diproses dalam keadaan utuh, seperti pada suatu artikel dengan topic "Ai, development, cybersecurity", maka setelah dilakukan vectonizer menjadi ['ai', 'development', 'cybersecurity']. Setelah itu lakukan perhitungan IDF pada data topic. Kemudian jika di-mapping, maka hasilnya akan sebagai berikut.
 ```
@@ -359,13 +384,13 @@ Tabel 12: Sampel hasil TF-IDF
 | At the Intersection of Machine Learning and Image Analysis: Insights from a Data Scientist	 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ### C. Menggunakan Cosine Similarity
-Cosine Similarity adalah ukuran yang digunakan untuk menentukan kesamaan antara dua vektor dalam ruang multidimensi. Ini menghitung cosinus sudut antara vektor, yang menunjukkan seberapa dekat hubungan vektor dalam hal orientasi dan arahnya. Dalam cosine similarity, kemiripan antara dua vektor diukur berdasarkan sudut antara vektor-vektor tersebut. Nilai cosine similarity berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kedua vektor memiliki arah yang sama atau sangat mirip, nilai 0 menunjukkan tidak ada kemiripan, dan nilai -1 menunjukkan arah yang berlawanan atau sangat berbeda.
+_Cosine Similarity_ adalah ukuran yang digunakan untuk menentukan kesamaan antara dua vektor dalam ruang multidimensi. Ini menghitung cosinus sudut antara vektor, yang menunjukkan seberapa dekat hubungan vektor dalam hal orientasi dan arahnya. Dalam cosine similarity, kemiripan antara dua vektor diukur berdasarkan sudut antara vektor-vektor tersebut. Nilai cosine similarity berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kedua vektor memiliki arah yang sama atau sangat mirip, nilai 0 menunjukkan tidak ada kemiripan, dan nilai -1 menunjukkan arah yang berlawanan atau sangat berbeda.
 
-Berikut adalah rumus untuk menghitung Cosinus Similarity:
+Berikut adalah rumus untuk menghitung _Cosinus Similarity_:
 
 <p align="center">
 <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/9510067a-5fc3-4e86-a6f7-7e1a65c9330a" alt="Rumus Cosine Similarity">
-Gambar 6: Rumus Cosine Similarity
+Gambar 5: Rumus Cosine Similarity
 </p>
  
 Di mana:
@@ -375,10 +400,10 @@ Di mana:
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/ddf22025-9e03-420f-ab67-54b072926a39" alt="Cosine Similarity Concept">
- Gambar 7. Grafik jarak antar 2 vektor di <i>Cosine Similarity</i> 
+ Gambar 6. Grafik jarak antar 2 vektor di <i>Cosine Similarity</i> 
  </p>
 
-Untuk penerapan pada proyek ini, dapat menggunakan fungsi cosine_similarity dari library sklearn. Pada tahapan ini, kita akan menghitung Cosine Similarity pada data hasil tf-idf sebelumnya. Sehingga hasil dari proses ini dapat dilihat di tabel sampel berikut ini.
+Untuk penerapan pada proyek ini, dapat menggunakan fungsi cosine_similarity dari library sklearn. Pada tahapan ini, kita akan menghitung _Cosine Similarity_ pada data hasil tf-idf sebelumnya. Sehingga hasil dari proses ini dapat dilihat di tabel sampel berikut ini.
 
 Tabel 13: Sampel hasil perhitungan jarak menggunakan Cosine Similarity
 | blog_title | What are the most notable findings and recommendations from Jordan’s national cybersecurity strategy? | Day 6: Improving Security and Error Handling in My Web Application | Traditions Create Stability For Kids | Type-Safe Builders in Kotlin: The Secret Sauce of Happy Developers | SQL Injection ( SQLi ) |
@@ -395,9 +420,9 @@ Tabel 13: Sampel hasil perhitungan jarak menggunakan Cosine Similarity
 | SkyLine — An Informative Document | 1.0 | 0 | 0 | 0 | 1.0 |
 
 ### D. Menggunakan Euclidean Distance
-Euclidean Distance adalah sebuah metode yang digunakan untuk mengukur jarak antara dua titik dalam ruang berdimensi banyak. Metode ini sering digunakan dalam analisis data, pengelompokan data, dan pengenalan pola.
+_Euclidean Distance_ adalah sebuah metode yang digunakan untuk mengukur jarak antara dua titik dalam ruang berdimensi banyak. Metode ini sering digunakan dalam analisis data, pengelompokan data, dan pengenalan pola.
 
-Dalam Euclidean Distance, jarak antara dua titik dihitung sebagai panjang garis lurus yang menghubungkan kedua titik tersebut. Jarak ini dihitung berdasarkan perbedaan koordinat antara dua titik pada setiap dimensi. Semakin besar nilainya, maka semakin jauh perbedaannya.
+Dalam _Euclidean Distance_, jarak antara dua titik dihitung sebagai panjang garis lurus yang menghubungkan kedua titik tersebut. Jarak ini dihitung berdasarkan perbedaan koordinat antara dua titik pada setiap dimensi. Semakin besar nilainya, maka semakin jauh perbedaannya.
 
 Rumusnya adalah sebagai berikut:
 
@@ -410,7 +435,7 @@ Di mana:
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/6ba0073a-2fc8-41d8-8476-f9a229e28909" alt="euclidean Distance">
- Gambar 8. Grafik jarak antara 2 vektor di <i>euclidean Distance</i>  dimana konsep pengukurannya sama dengan perhitungan sisi miring Pythagoras
+ Gambar 7. Grafik jarak antara 2 vektor di <i>euclidean Distance</i>  dimana konsep pengukurannya sama dengan perhitungan sisi miring Pythagoras
  </p>
 
 Untuk penerapan pada proyek ini, dapat menggunakan fungsi euclidean_distance dari library sklearn. Pada tahapan ini, kita akan menghitung euclidean distance pada data hasil tf-idf sebelumnya. Sehingga hasil dari proses ini dapat dilihat di tabel sampel berikut ini.
@@ -482,7 +507,7 @@ Tabel 17: Hasil 10 artikel yang direkomendasikan menggunakan pendekatan Euclidea
 |10|ZenDesk vs. Salesforce Service Cloud: A Compar...|cloud-services|delivering exceptional customer service choosi..|0|
 
 ## F. Collaborative Based Filtering
-Collaborative Based Filtering adalah metode dalam sistem rekomendasi yang mengandalkan informasi dari pengguna lain untuk memberikan rekomendasi. Pendekatan ini mencocokkan preferensi pengguna dengan preferensi pengguna lain yang memiliki profil atau perilaku serupa. 
+_Collaborative Based Filtering_ adalah metode dalam sistem rekomendasi yang mengandalkan informasi dari pengguna lain untuk memberikan rekomendasi. Pendekatan ini mencocokkan preferensi pengguna dengan preferensi pengguna lain yang memiliki profil atau perilaku serupa. 
 
 Kelebihan dari metode ini yaitu:
 1. Mampu menangani kompleksitas preferensi pengguna yang tidak dapat dilihat dari informasi konten item.
@@ -496,25 +521,25 @@ Namun terdapat beberapa kekurangan yaitu:
 
 ### G. Membangun Model
 Untuk metode ini, algoritma model yang akan digunakan adalah algoritma **_RecommenderNet_**.
-_RecommenderNet_ menggunakan 4 buah node embeddings. Embedding adalah sebuah hidden layers di sebuah neural network. Tujuan dari embedding adalah melakukan mapping dari data dengan dimensi tinggi ke dimensi yang lebih rendah, sehingga model dapat lebih mudah mempelajari hubungan antara input dan proses data lebih efisien.
+_RecommenderNet_ menggunakan 4 buah node embeddings. _Embedding_ adalah sebuah _hidden layers_ di sebuah _neural network_. Tujuan dari _embedding_ adalah melakukan mapping dari data dengan dimensi tinggi ke dimensi yang lebih rendah, sehingga model dapat lebih mudah mempelajari hubungan antara input dan proses data lebih efisien.
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/239917ad-636a-4d45-8fa5-eca305657430" alt="RecommenderNet">
- Gambar 9.Gambaran dari Embedding Layers
+ Gambar 8.Gambaran dari Embedding Layers
  </p>
  
- Embedding layer pada model ini ada 2 tipe, yaitu embedding untuk fitur dan bias layer dimana embedding fitur akan memiliki parameter regularizer l2 dengan nilai 0.000001 dan ukurannya adalah total fitur x 50.
+ _Embedding layer_ pada model ini ada 2 tipe, yaitu _embedding_ untuk fitur dan bias layer dimana _embedding_ fitur akan memiliki parameter _regularizer l2_ dengan nilai 0.000001 dan ukurannya adalah total fitur x 50.
 
 Sedangkan bias akan memiliki ukuran total fitur x 1.
 
-Hasil dari embedding fitur user dan anime kemudian dilakukan operasi perkalian matriks menggunakan tensordot. Kemudian hasil perkalian tersebut baru dijumlahkan dengan bias dari user dan anime. Setelah itu dimasukkan ke fungsi aktivasi sigmoid.
+Hasil dari _embedding_ fitur UserId dan Blog kemudian dilakukan operasi perkalian matriks menggunakan tensordot. Kemudian hasil perkalian tersebut baru dijumlahkan dengan bias dari UserId dan Blog. Setelah itu dimasukkan ke fungsi aktivasi sigmoid.
 
 ### H. Compile Model dan Buat Callbacks
-Setelah membangun model, model kemudian dilakukan kompilasi. Pada bagian ini, juga akan ditentukan loss function, optimizer, dan metrics. Untuk **loss function** dan **metrics** akan menggunakan **BinaryCrossentropy** dan **RootMeanSquare Error**. Sedangkan untuk optimizer,  menggunakan 2 metode, yaitu **Adam lr.0.001** dan **RMSprop lr.0.0001**.
+Setelah membangun model, model kemudian dilakukan kompilasi. Pada bagian ini, juga akan ditentukan _loss function_, _optimizer_, dan _metrics_. Untuk **loss function** dan **metrics** akan menggunakan **BinaryCrossentropy** dan **RootMeanSquare Error**. Sedangkan untuk optimizer,  menggunakan 2 metode, yaitu **Adam lr.0.001** dan **RMSprop lr.0.0001**.
 
-Kemudian dibuat dua callback yaitu **EarlyStopping** yang bertujuan untuk menghentikan proses latih jika nilai metrik tertentu tidak mengalami perubahan ke yang lebih baik. Selain itu teknik ini bisa digunakan untuk menyimpan model dengan hasil terbaik, sehingga ketika pelatihan selesai, model yang dijalankan di memori adalah model dengan weight dan kualitas terbaiknya. Pada EarlyStopping ini, nilai patience adalah 1 yang menunjukkan jika 1 epoch berikutnya tidak ada peningkatan kualitas, maka proses latih dihentikan. Kemudian parameter restore_best_weight menjadi True dan monitor diatur menjadi **"val_root_mean_squared_error"**, sehingga hasil RMSE validasi yang akan dijadikan patokan.
+Kemudian dibuat dua callback yaitu **_EarlyStopping_** yang bertujuan untuk menghentikan proses latih jika nilai metrik tertentu tidak mengalami perubahan ke yang lebih baik. Selain itu teknik ini bisa digunakan untuk menyimpan model dengan hasil terbaik, sehingga ketika pelatihan selesai, model yang dijalankan di memori adalah model dengan weight dan kualitas terbaiknya. Pada _EarlyStopping_ ini, nilai patience adalah 1 yang menunjukkan jika 1 epoch berikutnya tidak ada peningkatan kualitas, maka proses latih dihentikan. Kemudian parameter restore_best_weight menjadi True dan monitor diatur menjadi **"val_root_mean_squared_error"**, sehingga hasil RMSE validasi yang akan dijadikan patokan.
 
-Selain itu juga diterapkan callback ModelCheckpoint. Tujuan dari callback ini adalah agar setiap epochs yang memberikan hasil terbaik, model tersebut langsung disimpan. Model dapat disimpan dalam format **h5, hdf, pb** dan **ckpt**.
+Selain itu juga diterapkan _Callback ModelCheckpoint_. Tujuan dari _callback_ ini adalah agar setiap _epochs_ yang memberikan hasil terbaik, model tersebut langsung disimpan. Model dapat disimpan dalam format **h5, hdf, pb** dan **ckpt**.
 
 ### I. Training Model 
 Setelah itu, maka dijalankan proses pelatihan dengan jumlah batch sebesar 1024 dengan jumlah epochs sebesar 100. Lama proses pelatihan sangat bervariasi. Untuk model dengan **_Optimizer Adam_**, proses pelatihan cukup singkat dengan jumlah epoch adalah 2 epoch, sedangkan untuk **_Optimizer RMSprop_** sebesar 2 epoch.
@@ -565,19 +590,20 @@ Tabel 19 : Hasil rekomendasi 10 blog untuk pengguna 71
 # Evaluation
 ---
 
-Pada proyek ini, ada dua perhitungan metrik yang digunakan berdasarkan metode pendekatan yang digunakan, yaitu Precision untuk pendekatan Content-Based Filtering dan Root Mean Square Error untuk Collaborative Based Filtering.
+Pada proyek ini, ada dua perhitungan metrik yang digunakan berdasarkan metode pendekatan yang digunakan, yaitu Precision untuk pendekatan _Content-Based Filtering_ dan _Root Mean Square Error_ untuk _Collaborative Based Filtering_.
 
-Pada pendekatan ini, metrik yang digunakan adalah **Precision**. Sebelum masuk ke penjelasan mengenai Precission, maka kita harus mengetahui mengenai confusion matrix.
+Pada pendekatan ini, metrik yang digunakan adalah **Precision**. Sebelum masuk ke penjelasan mengenai Precission, maka kita harus mengetahui mengenai _Confusion Matrix_.
 
 ## A. Confusion Matrix
-Confusion matrix adalah sebuah tabel yang sering digunakan untuk mengukur kinerja dari model klasifikasi di machine learning. Tabel ini menggambarkan lebih detail tentang jumlah data yang diklasifikasikan dengan benar maupun salah.
+_Confusion Matrix_ adalah sebuah tabel yang sering digunakan untuk mengukur kinerja dari model klasifikasi di _machine learning_. Tabel ini menggambarkan lebih detail tentang jumlah data yang diklasifikasikan dengan benar maupun salah.
 
 Ada empat nilai yang dihasilkan di dalam tabel confusion matrix, di antaranya **True Positive** (TP), **False Positive** (FP), **False Negative** (FN), dan **True Negative** (TN). Ilustrasi tabel confusion matrix dapat dilihat pada Gambar berikut.
 
- <p align="center">
- <img src="https://github.com/agungbesti/German_Credit_Risk/assets/35904444/8a16a5f1-836a-48d8-b27b-1b1c7f45c249" alt="Confusion Matrix">
- Gambar 10. Confusion Matrix
- </p>
+<p align="center">
+<img src="https://github.com/agungbesti/German_Credit_Risk/assets/35904444/8a16a5f1-836a-48d8-b27b-1b1c7f45c249"
+alt="Confusion Matrix">
+Gambar 9. Confusion Matrix
+</p>
  
 **True Positive (TP)** : Jumlah data yang bernilai Positif dan diprediksi benar sebagai Positif.
 Jika kita telah mengklasifikasikan tingkat risiko baik, dan ternyata risikonya baik.
@@ -591,11 +617,11 @@ Jika kita telah mengklasifikasikan tingkat risiko buruk, dan ternyata risikonya 
 **True Negative (TN)** : Jumlah data yang bernilai Negatif dan diprediksi benar sebagai Negatif.
 Jika kita telah mengklasifikasikan tingkat risiko buruk, dan ternyata risikonya buruk.
 
-Dari Confusion Matrix ini dapat ditentukan nilai Accuracy, Precission, Recall dan F1-Score. Karena pendekatan model ini menggunakan Precission, maka yang akan dijelaskan disini adalah Precission.
+Dari _Confusion Matrix_ ini dapat ditentukan nilai _Accuracy_, _Precission_, _Recall_ dan _F1-Score_. Karena pendekatan model ini menggunakan _Precission_, maka yang akan dijelaskan disini adalah _Precission_.
 
 ## B. Precision
 ---
-Precision adalah peluang kasus yang diprediksi positif yang pada kenyataannya termasuk kasus kategori positif. Precission salah satu metrik evaluasi yang umum digunakan untuk mengukur sejauh mana model klasifikasi benar dalam mengidentifikasi secara akurat. Precission memberikan gambaran tentang seberapa baik model dalam menghindari memberikan hasil False Positive. Precission yang tinggi menunjukkan bahwa model memiliki sedikit jumlah kesalahan dalam mengklasifikasikan data dengan kelas negatif menjadi positif.
+_Precision_ adalah peluang kasus yang diprediksi positif yang pada kenyataannya termasuk kasus kategori positif. _Precission_ salah satu metrik evaluasi yang umum digunakan untuk mengukur sejauh mana model klasifikasi benar dalam mengidentifikasi secara akurat. Precission memberikan gambaran tentang seberapa baik model dalam menghindari memberikan hasil False Positive. Precission yang tinggi menunjukkan bahwa model memiliki sedikit jumlah kesalahan dalam mengklasifikasikan data dengan kelas negatif menjadi positif.
 
 Rumus dalam perhitungan precission matiks adalah sebagai berikut.
 
@@ -735,10 +761,10 @@ Tabel 21 : Hasil perbandingan daftar rekomendasi blog menggunakan Cosine Similar
 </tbody>
 </table>
 
-Berdasarkan hasil dari tabel diatas keseluruhan blog memiliki kesamaan berdasarkan topik, walaupun judul yang direkomendasikan berbeda antara Cosine Similarity dengan Euclidean Distance. Karena rekomendasi yang dihasilkan menampilkan topik yang sama dari 10 blog yang dihasilkan, maka nilai **presisi dari rekomendasi Cosine Similarity dan Euclidean Distance pada tabel 18 adalah 100%**.
+Berdasarkan hasil dari tabel diatas keseluruhan blog memiliki kesamaan berdasarkan topik, walaupun judul yang direkomendasikan berbeda antara Cosine Similarity dengan Euclidean Distance. Karena rekomendasi yang dihasilkan menampilkan topik yang sama dari 10 blog yang dihasilkan, maka nilai **presisi dari rekomendasi _Cosine Similarity_ dan _Euclidean Distance_ pada tabel 18 adalah 100%**.
 
 ## C. Collaborative Based Filtetring
-Pada pendekatan ini, metrik yang digunakan adalah Root Mean Square Error (RMSE). RMSE adalah metrik evaluasi yang umum digunakan untuk mengukur sejauh mana prediksi model mendekati nilai sebenarnya. RMSE pada dasarnya merupakan akar kuadrat dari Mean Square Error (MSE).
+Pada pendekatan ini, metrik yang digunakan adalah _Root Mean Square Error_ (RMSE). RMSE adalah metrik evaluasi yang umum digunakan untuk mengukur sejauh mana prediksi model mendekati nilai sebenarnya. RMSE pada dasarnya merupakan akar kuadrat dari _Mean Square Error_ (MSE).
 
 Rumus dari RMSE adalah sebagai berikut.
 
@@ -756,7 +782,7 @@ Pada proyek ini, model yang digunakan adalah **RecommenderNet** dengan optimizer
 <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/59a8922c-436d-4c3c-b251-fc3e7c370db0">
 </p>
 <p align="center">
-Gambar 11. Hasil model dengan <i>Optimizer Adams</i> dan <i>RMSprop</i>
+Gambar 10. Hasil model dengan <i>Optimizer Adams</i> dan <i>RMSprop</i>
 </p>
 
 Pada gambar diatas, model dengan fungsi **optimasi adam** memiliki nilai RMSE yang tinggi, yaitu 0.4021 untuk latih dan 0.4027 untuk validasi di epoch pertama, dan di epoch berikutnya, nilai RMSE terus meningkat.
@@ -774,8 +800,8 @@ Berdasarkan proyek ini dapat disimpulkan sebagai berikut
 
 ### Referensi
 ---
-[1] [SISTEM REKOMENDASI BUKU MENGGUNAKAN METODE ITEM-BASED COLLABORATIVE FILTERING](https://ejournal.undip.ac.id/index.php/jmasif/article/view/31482) 
+[1] Girsang, A. S., Al Faruq, B., Herlianto, H. R., & Simbolon, S. (2020). Collaborative Recommendation System in Users of Anime Films. Journal of Physics: Conference Series, 1566(1). https://doi.org/10.1088/1742-6596/1566/1/012057
 
-[2] [SISTEM REKOMENDASI ARTIKEL BERITA MENGGUNAKAN METODE K-NEAREST NEIGHBOR BERBASIS WEBSITE](http://repository.unmuhjember.ac.id/654/1/journal.pdf)
+[2] Reynaldi, & Istiono, W. (2023). Content-based Filtering and Web Scraping in Website for Recommended Anime. Asian Journal of Research in Computer Science, 15(2), 32–42. https://doi.org/10.9734/ajrcos/2023/v15i2318
 
-
+[3]	Y. Afoudi, M. Lazaar, and M. Al Achhab, “Hybrid recommendation system combined content-based filtering and collaborative prediction using artificial neural network,” Simul Model Pract Theory, vol. 113, Dec. 2021, doi: https://10.1016/j.simpat.2021.102375.
