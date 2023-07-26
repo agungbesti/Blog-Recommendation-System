@@ -160,10 +160,12 @@ Tabel 6 : Melihat kolom dan tipe data pada dataset Blog
 
 Pada Tabel 6 dapat dilihat bahwa data memiliki 3 kolom numerik atau angka.
 
+
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/d57e03ea-89ec-401b-ae1e-75930092c2bf" alt="Univariate Analysis pada variabel Topic">
  Gambar 3: Univariate Analysis pada variabel Topic
  </p>
+
 Pada Gambar 3 dapat dilihat bahwa penulisan artikel dengan topik **AI (artificial inteligence) memiliki distribusi data yang lebih banyak** dibandingkan dengan topik yang lainnya. Hal ini disebabkan karena topik ai merupakan salah satu topic yang paling banyak diminati untuk saat ini.
 
 Tabel 7 : Jumlah total penulisan artikel berdasarkan topik
@@ -320,10 +322,13 @@ TF-IDF, kependekan dari Term Frequency-Inverse Document Frequency, adalah teknik
 
 Perhitungan TF-IDF dilakukan dengan mengalikan nilai TF dan IDF secara bersamaan. Skor yang dihasilkan merepresentasikan pentingnya suatu istilah dalam dokumen dalam konteks keseluruhan kumpulan dokumen. Skor yang lebih tinggi menunjukkan bahwa suatu istilah lebih relevan atau berbeda dengan dokumen tertentu. 
 Rumus perhitungan TF-IDF untuk term (t) dalam dokumen (d) dalam kumpulan dokumen adalah sebagai berikut:
+ 
+ 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/aff977e6-a9d8-4104-9686-9454910d17a6" alt="Rumus perhitungan TF-IDF">
  Gambar 5: Perhitungan TF-IDF
  </p>
+
 
 Pada bagian ini, TF-IDF akan diterapkan untuk kolom topic. Langkah yang dilakukan untuk menerapkan Pada tahapan ini, tokenizer yang akan digunakan adalah dengan split pada data kolom tersebut. Hal ini digunakan agar data topic akan diproses dalam keadaan utuh, seperti pada suatu artikel dengan topic "Ai, development, cybersecurity", maka setelah dilakukan vectonizer menjadi ['ai', 'development', 'cybersecurity']. Setelah itu lakukan perhitungan IDF pada data topic. Kemudian jika di-mapping, maka hasilnya akan sebagai berikut.
 ```
@@ -362,7 +367,7 @@ Di mana:
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/ddf22025-9e03-420f-ab67-54b072926a39" alt="Cosine Similarity Concept">
- Gambar 9. Grafik jarak antar 2 vektor di <i>Cosine Similarity</i> 
+ Gambar 7. Grafik jarak antar 2 vektor di <i>Cosine Similarity</i> 
  </p>
 
 Untuk penerapan pada proyek ini, dapat menggunakan fungsi cosine_similarity dari library sklearn. Pada tahapan ini, kita akan menghitung Cosine Similarity pada data hasil tf-idf sebelumnya. Sehingga hasil dari proses ini dapat dilihat di tabel sampel berikut ini.
@@ -397,7 +402,7 @@ Di mana:
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/6ba0073a-2fc8-41d8-8476-f9a229e28909" alt="euclidean Distance">
- Gambar 10. Grafik jarak antara 2 vektor di <i>euclidean Distance</i>  dimana konsep pengukurannya sama dengan perhitungan sisi miring Pythagoras
+ Gambar 8. Grafik jarak antara 2 vektor di <i>euclidean Distance</i>  dimana konsep pengukurannya sama dengan perhitungan sisi miring Pythagoras
  </p>
 
 Untuk penerapan pada proyek ini, dapat menggunakan fungsi euclidean_distance dari library sklearn. Pada tahapan ini, kita akan menghitung euclidean distance pada data hasil tf-idf sebelumnya. Sehingga hasil dari proses ini dapat dilihat di tabel sampel berikut ini.
@@ -487,7 +492,7 @@ _RecommenderNet_ menggunakan 4 buah node embeddings. Embedding adalah sebuah hid
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/239917ad-636a-4d45-8fa5-eca305657430" alt="RecommenderNet">
- Gambar 10.Gambaran dari Embedding Layers
+ Gambar 9.Gambaran dari Embedding Layers
  </p>
  
  Embedding layer pada model ini ada 2 tipe, yaitu embedding untuk fitur dan bias layer dimana embedding fitur akan memiliki parameter regularizer l2 dengan nilai 0.000001 dan ukurannya adalah total fitur x 50.
@@ -550,7 +555,6 @@ Tabel 16 : Hasil rekomendasi 10 blog untuk pengguna 71
 |10|Power Up Spawning | Software-Development|
 
 
-
 # Evaluation
 ---
 
@@ -565,7 +569,7 @@ Ada empat nilai yang dihasilkan di dalam tabel confusion matrix, di antaranya **
 
  <p align="center">
  <img src="https://github.com/agungbesti/German_Credit_Risk/assets/35904444/8a16a5f1-836a-48d8-b27b-1b1c7f45c249" alt="Confusion Matrix">
- Gambar 11. Confusion Matrix
+ Gambar 10. Confusion Matrix
  </p>
  
 **True Positive (TP)** : Jumlah data yang bernilai Positif dan diprediksi benar sebagai Positif.
@@ -599,6 +603,8 @@ Tabel 17 : Judul blog yang akan dijadikan patokan untuk mendapatkan daftar rekom
 |2628|2655|Relation between cloud computing and artificial intelligence| Cloud computing is a fairly new service that o...	| cloud-services| cloud computing fairly new service organizatio...|
 
 Selain itu penulis akan membandingkan hasil rekomendasi yang menggunakan cosine similarity dan euclidean distance dimana hasil nya untuk blog pertama pertama adalah sebagai berikut.
+
+Tabel 18 : Hasil perbandingan daftar rekomendasi blog menggunakan Cosine Similarity dengan Euclidean Distance dengan judul blog **Relation between cloud computing and artificial intelligence**
 
 <table>
 <thead>
@@ -722,9 +728,42 @@ Selain itu penulis akan membandingkan hasil rekomendasi yang menggunakan cosine 
 </tbody>
 </table>
 
+Berdasarkan hasil dari tabel diatas keseluruhan blog memiliki kesamaan berdasarkan topik, walaupun judul yang direkomendasikan berbeda antara Cosine Similarity dengan Euclidean Distance. Karena rekomendasi yang dihasilkan menampilkan topik yang sama dari 10 blog yang dihasilkan, maka nilai **presisi dari rekomendasi Cosine Similarity dan Euclidean Distance pada tabel 18 adalah 100%**.
+
+## C. Collaborative Based Filtetring
+Pada pendekatan ini, metrik yang digunakan adalah Root Mean Square Error (RMSE). RMSE adalah metrik evaluasi yang umum digunakan untuk mengukur sejauh mana prediksi model mendekati nilai sebenarnya. RMSE pada dasarnya merupakan akar kuadrat dari Mean Square Error (MSE).
+
+Rumus dari RMSE adalah sebagai berikut.
+
+$$RMSE  = \sqrt{\sum_{i = 1}^{n}\dfrac{(\hat y _i- y_i)}{n}}$$
+
+Dimana:
+
+- $$n$$ : Total data yang diamati / diprediksi
+- $$\hat y_i$$ : Data hasil prediksi
+- $$y_i$$ : Data yang sebenarnya (aktual)
+
+Pada proyek ini, model yang digunakan adalah **RecommenderNet** dengan optimizer yang berbeda, yaitu **Adam** dan **RMSprop** dengan hasil seperti terlihat pada gambar berikut:
+
+<p align="center">
+<img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/59a8922c-436d-4c3c-b251-fc3e7c370db0">
+</p>
+<p align="center">
+Gambar 11. Hasil model dengan <i>Optimizer Adams</i> dan <i>RMSprop</i>
+</p>
+
+Pada gambar diatas, model dengan fungsi **optimasi adam** memiliki nilai RMSE yang tinggi, yaitu 0.4021 untuk latih dan 0.4027 untuk validasi di epoch pertama, dan di epoch berikutnya, nilai RMSE terus meningkat.
+
+Sedangkan dengan fungsi **optimasi RMSprop**, nilai RMSE 0.4018 untuk latih dan 0.4035 untuk validasi pada epoch pertama sehingga mendapatkan hasil akhir yaitu 0.3970 untuk latih dan 0.40357 untuk validasi. Sehingga model ini menjadi model yang lebih optimal.
+
 ### Kesimpulan
 ---
+Berdasarkan proyek ini dapat disimpulkan sebagai berikut
 
+1. Blog dengan topik AI merupakan Blog yang paling banyak ditulis oleh blogger
+2. Mayoritas rating blog berada di range 0 hingga 5.0, di dominasi oleh rating 5 yang menekankan bahwa blog yang ditulis secara umum banyak disukai oleh pembaca
+3. Berdasarkan hasil dari sistem rekomendasi dengan metode Content-Based Filtering, model dengan metode perhitungan Cosine Similarity dan Euclidean Distance memberikan hasil yang sama  dengan nilai presisi sebesar 100%. Namun pembeda antara kedua metode tersebut adalah posisi dari daftar blog yang direkomendasikan .
+4. Berdasarkan hasil dari sistem rekomendasi dengan metode Collaborative Filtering, model dengan optimizer RMSprop memberikan hasil yang lebih baik dibandingkan dengan Adam dengan nilai RMSE sebesar 0.3970
 
 ### Referensi
 ---
@@ -732,7 +771,4 @@ Selain itu penulis akan membandingkan hasil rekomendasi yang menggunakan cosine 
 
 [2] [SISTEM REKOMENDASI ARTIKEL BERITA MENGGUNAKAN METODE K-NEAREST NEIGHBOR BERBASIS WEBSITE](http://repository.unmuhjember.ac.id/654/1/journal.pdf)
 
-[3] [Theoretical and Applied Aspects of Bank Credit Risks Minimization](https://ieeexplore.ieee.org/document/9468056)
-
-[4] [KLASIFIKASI KELOMPOK UMUR MANUSIA BERDASARKAN ANALISIS DIMENSIFRAKTAL BOX COUNTING DARI CITRA WAJAH DENGAN DETEKSI TEPI CANNY](https://ejournal.unesa.ac.id/index.php/mathunesa/article/view/19398/17715)
 
