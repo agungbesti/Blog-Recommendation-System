@@ -40,7 +40,7 @@ Tujuan yang ingin dicapai dari pembuatan aplikasi sistem rekomendasi blog ini, y
 
 ### Solution Approach
 ---
-- Solusi yang dapat dilakukan untuk menangani permasalahan sebagaimana terdapat dalam problem statements, yaitu dengan membuat aplikasi yang dapat memberikan rekomendasi artikel yang relevan. Adapun aplikasi tersebut dibuat dengan menerapkan teknologi machine learning serta bahasa pemrograman python dengan metode pendekatan **_Content-Based Filtering_** dan **_Collaborative Filtering_**.
+- Solusi yang dapat dilakukan untuk menangani permasalahan sebagaimana terdapat dalam problem statements, yaitu dengan membuat aplikasi yang dapat memberikan rekomendasi artikel yang relevan. Adapun aplikasi tersebut dibuat dengan menerapkan teknologi machine learning serta bahasa pemrograman python dengan metode pendekatan **_Content-Based Filtering_** dan **_Collaborative Filtering_** [3].
 
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/043405f5-7717-4503-bff7-99855ce21b24" alt="Content-Based Filtering dan Collaborative Filtering">
