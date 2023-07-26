@@ -261,6 +261,7 @@ Tabel 9: Sample Data setelah encode fitur userId dan blog_id
 
 ###### B. Konversi fitur Rating
 Setelah melakukan encode pada fitur userId dan blog_id, langkah berikutnya adalah melakukan konversi dari nilai rating dari string menjadi float64. Sehingga hasil statistik dari variabel blog menjadi sebagai berikut.
+
 Tabel 10 : Melihat kolom dan tipe data pada dataset Blog
 |   #   |    Column     | Non-Null Count |  Dtype  |
 |-------|--------------|----------------|---------|
@@ -329,10 +330,12 @@ Perhitungan TF-IDF dilakukan dengan mengalikan nilai TF dan IDF secara bersamaan
 Rumus perhitungan TF-IDF untuk term (t) dalam dokumen (d) dalam kumpulan dokumen adalah sebagai berikut:
  
  
- <p align="center">
- <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/aff977e6-a9d8-4104-9686-9454910d17a6" alt="Rumus perhitungan TF-IDF">
- Gambar 5: Perhitungan TF-IDF
- </p>
+ 
+<p align="center">
+<img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/aff977e6-a9d8-4104-9686-9454910d17a6" alt="Rumus perhitungan TF-IDF">
+
+Gambar 5: Perhitungan TF-IDF
+</p>
 
 
 Pada bagian ini, TF-IDF akan diterapkan untuk kolom topic. Langkah yang dilakukan untuk menerapkan Pada tahapan ini, tokenizer yang akan digunakan adalah dengan split pada data kolom tersebut. Hal ini digunakan agar data topic akan diproses dalam keadaan utuh, seperti pada suatu artikel dengan topic "Ai, development, cybersecurity", maka setelah dilakukan vectonizer menjadi ['ai', 'development', 'cybersecurity']. Setelah itu lakukan perhitungan IDF pada data topic. Kemudian jika di-mapping, maka hasilnya akan sebagai berikut.
@@ -360,10 +363,10 @@ Cosine Similarity adalah ukuran yang digunakan untuk menentukan kesamaan antara 
 
 Berikut adalah rumus untuk menghitung Cosinus Similarity:
 
- <p align="center">
- <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/9510067a-5fc3-4e86-a6f7-7e1a65c9330a" alt="Rumus Cosine Similarity">
- Gambar 6: Rumus Cosine Similarity
- </p>
+<p align="center">
+<img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/9510067a-5fc3-4e86-a6f7-7e1a65c9330a" alt="Rumus Cosine Similarity">
+Gambar 6: Rumus Cosine Similarity
+</p>
  
 Di mana:
 - A dan B adalah dua vektor yang akan dibandingkan.
@@ -464,7 +467,7 @@ Tabel 16: Hasil 10 artikel yang direkomendasikan menggunakan pendekatan Cosine S
 
 Sedangkan untuk hasil dari daftar 10 artikel yang direkomendasi berdasarkan metode Euclidean Distance adalah sebagai berikut:
 
-Tabel 14: Hasil 10 artikel yang direkomendasikan menggunakan pendekatan Euclidean Distance
+Tabel 17: Hasil 10 artikel yang direkomendasikan menggunakan pendekatan Euclidean Distance
 |#| blog_title | topic  | clean_blog_content | score|
 |-|---------|--------|-------|-------|
 |1|Amazon DevOps Guru|cloud-services| guru devops became one fastest methodology get...|0|
@@ -532,8 +535,7 @@ Setelah melakukan pelatihan, langkah terakhir adalah membuat sebuah fungsi untuk
  
 Pada contoh ini, sistem rekomendasi akan memberikan rekomendasi blog untuk pengguna dengan userID 71 dimana 5 blog yang paling tinggi rating yang ia berikan adalah sebagai berikut:
 
-Tabel 15 : Hasil 5 blog dari pengguna 71 dengan rating tertinggi
-
+Tabel 18 : Hasil 5 blog dari pengguna 71 dengan rating tertinggi
 |#| Title Blog | Topic|
 |-|------|--------|
 |1|Kotlin loop best practice with example| android |
@@ -544,8 +546,8 @@ Tabel 15 : Hasil 5 blog dari pengguna 71 dengan rating tertinggi
 
 Dan setelah dilakukan prediksi, maka 10 blog yang direkomendasikan untuk pengguna 71 adalah sebagai berikut:
 
-Tabel 16 : Hasil rekomendasi 10 blog untuk pengguna 71
 
+Tabel 19 : Hasil rekomendasi 10 blog untuk pengguna 71
 |#| Title Blog | Topic|
 |-|------|--------|
 |1|The Power of Python’s Frequency Aggregation: Unlocking Valuable Insights from Your Data| data-analysis |
@@ -602,14 +604,14 @@ $$Precission = \dfrac{TP}{TP + FP}$$
 Pada proyek ini, penulis akan melakukan percobaan untuk mendapatkan rekomendasi blog dimana ada 1 judul blog yang akan dijadikan bahan percobaan. Untuk nilai TP dapat diberikan jika topic tersebut memiliki relevansi dengan topic dari blog yang jadi patokan. Suatu judul dinyatakan relevan jika memenuhi minimal 2 topic yang ada pada blog patokannya.
 
 
-Tabel 17 : Judul blog yang akan dijadikan patokan untuk mendapatkan daftar rekomendasi blog
+Tabel 20 : Judul blog yang akan dijadikan patokan untuk mendapatkan daftar rekomendasi blog
 |#| blog_id | blog_title  | blog_content | topic | clean_blog_content |
 |-|---------|--------|-------|----------|----------|
 |2628|2655|Relation between cloud computing and artificial intelligence| Cloud computing is a fairly new service that o...	| cloud-services| cloud computing fairly new service organizatio...|
 
 Selain itu penulis akan membandingkan hasil rekomendasi yang menggunakan cosine similarity dan euclidean distance dimana hasil nya untuk blog pertama pertama adalah sebagai berikut.
 
-Tabel 18 : Hasil perbandingan daftar rekomendasi blog menggunakan Cosine Similarity dengan Euclidean Distance dengan judul blog **Relation between cloud computing and artificial intelligence**
+Tabel 21 : Hasil perbandingan daftar rekomendasi blog menggunakan Cosine Similarity dengan Euclidean Distance dengan judul blog **Relation between cloud computing and artificial intelligence**
 
 <table>
 <thead>
