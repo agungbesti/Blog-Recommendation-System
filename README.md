@@ -166,6 +166,7 @@ Pada Tabel 6 dapat dilihat bahwa data memiliki 3 kolom numerik atau angka.
  Gambar 3: Univariate Analysis pada variabel Topic
  </p>
 
+
 Pada Gambar 3 dapat dilihat bahwa penulisan artikel dengan topik **AI (artificial inteligence) memiliki distribusi data yang lebih banyak** dibandingkan dengan topik yang lainnya. Hal ini disebabkan karena topik ai merupakan salah satu topic yang paling banyak diminati untuk saat ini.
 
 Tabel 7 : Jumlah total penulisan artikel berdasarkan topik
@@ -197,10 +198,12 @@ Tabel 7 : Jumlah total penulisan artikel berdasarkan topik
 
 Pada Tabel 7 diurutkan jumlah artikel yang paling banyak ditulis sampai yang terendah berdasarkan topik. Terlihat yang paling banyak ditulis adalah dengan topik **AI** dan yang terendah dengan penulisan artikel bertopik **Software-Development**.
 
+
  <p align="center">
  <img src="https://github.com/agungbesti/Blog-Recommendation-System/assets/35904444/bf909ecc-5f99-4d16-a050-e100dd2a0ec1" alt="Univariate Analysis pada variabel Ratings">
  Gambar 4: Univariate Analysis pada variabel Ratings
  </p>
+
 
 Pada Gambar 4 dapat dilihat bahwa artikel yang ditulis **memiliki distribusi yang paling banyak pada skor 5** dibandingkan dengan yang lainnya. Hal ini menegaskan bahwa sebagian besar penulisan blog sudah sesuai dengan keinginan para pembaca blog.
 
